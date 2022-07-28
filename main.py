@@ -26,4 +26,5 @@ for question in questions_answers["results"]:
 quiz_format = Quiz(all_questions)
 
 # set up user interface
-user_interface = UserInterface()
+# display questions
+user_interface = UserInterface(quiz_format)

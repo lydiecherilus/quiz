@@ -1,8 +1,10 @@
 from tkinter import *
+from quiz_format import Quiz
 
 class UserInterface:
 
-    def __init__(self):
+    def __init__(self, quiz_format: Quiz):
+        self.quiz = quiz_format
         self.window = Tk()
         self.window.title("Quiz")
         self.window.config(padx=30, pady=30, bg="blue")
@@ -13,7 +15,7 @@ class UserInterface:
 
         # create canvas
         self.canvas = Canvas(width=300, height=250, bg="white")
-        self.question_text = self.canvas.create_text((150, 125), width=280, text="", fill="blue", font=("Arial", 16))
+        self.question_text = self.canvas.create_text((150, 125), width=280, text="questions here", fill="blue", font=("Arial", 16))
         self.canvas.grid(row=1, column=0, columnspan=2, pady=50)
 
         # create buttons
