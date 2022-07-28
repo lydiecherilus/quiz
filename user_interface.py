@@ -26,6 +26,13 @@ class UserInterface:
         false_image = PhotoImage(file="images/false.png")
         self.false_button = Button(image=false_image, highlightthickness=0)
         self.false_button.grid(row=2, column=1)
+        self.get_next_question()
+
+    def get_next_question(self):
+        '''display next question'''
+        self.canvas.config(bg="white")
+        question_text = self.quiz.next_question()
+        self.canvas.itemconfig(self.question_text, text=question_text)
 
         self.window.mainloop()
         
