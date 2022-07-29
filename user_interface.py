@@ -20,13 +20,16 @@ class UserInterface:
 
         # create buttons
         true_image = PhotoImage(file="images/true.png")
-        self.true_button = Button(image=true_image, highlightthickness=0)
+        self.true_button = Button(image=true_image, highlightthickness=0, command=self.true_button_clicked)
         self.true_button.grid(row=2, column=0)
 
         false_image = PhotoImage(file="images/false.png")
-        self.false_button = Button(image=false_image, highlightthickness=0)
+        self.false_button = Button(image=false_image, highlightthickness=0, command=self.false_button_clicked)
         self.false_button.grid(row=2, column=1)
         self.get_next_question()
+
+        self.window.mainloop()
+        
 
     def get_next_question(self):
         '''display next question'''
@@ -34,5 +37,20 @@ class UserInterface:
         question_text = self.quiz.next_question()
         self.canvas.itemconfig(self.question_text, text=question_text)
 
-        self.window.mainloop()
-        
+
+    def true_button_clicked(self):
+        if self.quiz.check_answer("True"):
+            self.canvas.config(bg="green")
+        else:
+            self.canvas.config(bg="red")
+        self.window.after(1000, self.get_next_question)
+    
+
+    def false_button_clicked(self):
+        right_answer = self.quiz.check_answer("False")
+        if right_answer:
+            self.canvas.config(bg="green")
+        else:
+            self.canvas.config(bg="red")
+        self.window.after(1000, self.get_next_question)
+
