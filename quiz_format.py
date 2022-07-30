@@ -7,12 +7,19 @@ class Quiz:
         self.score = 0
         self.question_list = question_list
         self.current_question = None
+
+
+    def is_question_left(self):
+        '''check if there is any questions left in the quiz'''
+        return self.question_number < len(self.question_list)
     
+
     def next_question(self):
         self.current_question = self.question_list[self.question_number]
         self.question_number += 1
         question_text = html.unescape(self.current_question.text)
         return f"Q.{self.question_number}: {question_text}"
+
 
     def check_answer(self, user_answer):
         '''check user's answers againt quiz and update score'''
@@ -22,4 +29,3 @@ class Quiz:
             return True
         else:
             return False
-            
