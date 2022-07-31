@@ -34,8 +34,13 @@ class UserInterface:
     def get_next_question(self):
         '''display next question'''
         self.canvas.config(bg="white")
-        question_text = self.quiz.next_question()
-        self.canvas.itemconfig(self.question_text, text=question_text)
+        if self.quiz.is_question_left():
+            self.score.config(text=f"Score: {self.quiz.score}")
+            question_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.question_text, text=question_text)
+        else:
+            self.score.config(text=f"Score: {self.quiz.score}")
+            self.canvas.itemconfig(self.question_text, text=(f"The quiz is completed.\nYour final score is: {self.quiz.score}/{self.quiz.question_number}"))
 
 
     def true_button_clicked(self):
@@ -53,4 +58,3 @@ class UserInterface:
         else:
             self.canvas.config(bg="red")
         self.window.after(1000, self.get_next_question)
-
