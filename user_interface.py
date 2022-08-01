@@ -41,6 +41,8 @@ class UserInterface:
         else:
             self.score.config(text=f"Score: {self.quiz.score}")
             self.canvas.itemconfig(self.question_text, text=(f"The quiz is completed.\nYour final score is: {self.quiz.score}/{self.quiz.question_number}"))
+            self.true_button.config(state="disabled")
+            self.false_button.config(state="disabled")
 
 
     def true_button_clicked(self):
